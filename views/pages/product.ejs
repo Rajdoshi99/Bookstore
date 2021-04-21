@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/header'); %>
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800,900");
+body {
+  line-height: 1.5;
+  font-family: "Muli", sans-serif;
+}
+
+.section {
+  padding: 100px 0;
+}
+.bg-gray {
+  background: #F5F5F5;
+}
+.product-details .product-title {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.product-details .tab-title {
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.product-details .product-meta li {
+  color: #888;
+  margin-right: 25px;
+}
+
+.product-details .product-meta li a {
+  color: #333;
+  margin-left: 3px;
+}
+
+.product-details .content {
+  padding-top: 40px;
+}
+
+.product-details .content h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.product-details .content p {
+  color: #888;
+  line-height: 22px;
+}
+
+.product-details .content .nav {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.product-details .content .nav .nav-item {
+  margin-right: 3px;
+}
+
+.product-details .content .nav .nav-item .nav-link {
+  padding: 20px 30px;
+  border-radius: 0;
+  background: #fff;
+}
+
+.product-details .content .nav .nav-item .nav-link:hover {
+  background: #5672f9;
+  color: #fff;
+}
+
+.product-details .content .nav .nav-item .nav-link.active {
+  background: #5672f9;
+}
+
+.product-details .content .tab-content {
+  background: #fff;
+  padding: 30px;
+}
+
+.widget {
+  background: #fff;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+  padding: 25px 30px 30px;
+  margin-bottom: 30px;
+  border-radius: 2px;
+}
+.widget.price-range b {
+  font-size: 13px;
+  color: #888;
+}
+
+.widget.price-range .slider.slider-horizontal {
+  width: 100%;
+}
+
+.widget.price-range .slider-handle {
+  background: #5672f9;
+}
+
+.widget.price-range .slider-track {
+  margin-top: -2px;
+  height: 5px;
+  box-shadow: none;
+  border-radius: 0;
+  background: #f5f5f5;
+}
+
+.widget.price-range .slider-selection {
+  background: #dedede;
+  box-shadow: none;
+}
+
+.widget.price {
+  background: #5672f9;
+}
+
+.widget.price h4 {
+  color: #fff;
+}
+
+.widget.price p {
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+}
+
+.widget.map {
+  padding: 10px;
+}
+
+.widget.map #map_canvas {
+  height: 300px;
+}
+
+.widget.user {
+  padding-top: 50px;
+}
+
+.widget.user .image img {
+  width: 157px;
+  height: 157px;
+  border-radius: 100%;
+  border: 7px solid #dedede;
+}
+
+.widget.user h5 {
+  font-size: 20px;
+  margin-top: 23px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+</style>
+ 
+</head>
+
+<body class="body-wrapper">
+
+    <%- include('../partials/head'); %>
+
+    <!--Navbar-->
+    <%- include('../partials/navbar'); %>
+
+<section class="section bg-gray">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<!-- Left sidebar -->
+			<div class="col-md-8">
+				<div class="product-details">
+					<h1 class="product-title"><%=product.title%></h1>
+					<div class="product-meta">
+						<ul class="list-inline">
+							<li class="list-inline-item"><i class="fa fa-user-o"></i> By <b><%=product.seller_name%></b></li>
+							<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Category <b><%=product.category%></b></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location <b><%=product.city%></b></li>
+						</ul>
+					</div>
+
+					<!-- product slider -->
+					<div class="product-slider">
+						<div class="product-slider-item my-4" data-image="images/products/products-1.jpg">
+							<img class="img-fluid w-100" src="<%= product.file.replace('public\\','') %>" alt="product-img">
+						</div>
+					</div>
+					<!-- product slider -->
+
+					<div class="content mt-5 pt-5">
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								<h3 class="tab-title">Product Description</h3>
+								<p style="white-space: pre-line"><%=product.description%></p>
+
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="sidebar">
+					<div class="widget price text-center">
+						<h4>Price</h4>
+						<p>₹ <%=product.price%></p>
+					</div>
+					<!-- User Profile widget -->
+					<div class="widget user text-center">
+						<img class="rounded-circle img-fluid mb-5 px-5" src="./images/avatar.png" alt="">
+						<h4><%=product.seller_name%></h4>
+
+						<ul class="list-inline mt-20">
+              <form action="/chat" method="POST" target="_blank">
+                <input type="hidden" id="contact" name="contact" value="<%= product.seller_number%>">
+                <%if(user == null){%>
+                  <li class="list-inline-item"><button type="submit" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3" title="Sign-in to contact the seller" disabled> <i class="fa fa-whatsapp"></i> Contact</button></li>
+                <%} else{%>
+                  <li class="list-inline-item"><button type="submit" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3"> <i class="fa fa-whatsapp"></i> Contact</button></li>
+                <%}%>
+              </form>
+						</ul>
+					</div>
+					
+					<!-- Safety tips widget -->
+					<div class="widget disclaimer">
+						<h5 class="widget-header font-weight-bold">Safety Tips</h5>
+						<ul>
+							<li>Meet seller at a public place</li>
+							<li>Check the item before you buy</li>
+							<li>Pay only after collecting the item</li>
+						</ul>
+					</div>
+					
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+
+</body>
+
+</html>

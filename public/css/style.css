@@ -1,0 +1,38 @@
+/* unvisited link */
+a:link {
+    color: rgb(12, 108, 235);
+  }
+  
+  /* visited link */
+  a:visited {
+    color: rgb(0, 119, 128);
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: rgb(11, 181, 211);
+  }
+
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }

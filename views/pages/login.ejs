@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+    <title>Login</title>
+     <!-- SITE TITTLE -->
+     <%- include('../partials/header'); %>
+
+</head>
+
+<body style="background:#f2f2f2;">
+    <div class="container">
+        <div class="card" style="width:25%;position: fixed;top: 40%;left: 50%;transform: translate(-50%, -50%);
+                border-radius:5%;box-shadow: 5px 5px 8px #cecece">
+
+            <div class="card-body">
+                <a class="nav-link" href="#" onclick="goBack()"><i class="fa fa-times" style="font-size:20px"></i></a>
+                <h4 class="card-title text-center">Login</h4>
+                <form action="/login-check" method="GET">
+                    <label for="u_name">Email</label>
+                    <input class="form-control" type="email" name="email" required /></br>
+                    <label for="passwd">Password</label>
+                    <input class="form-control" type="password" name="passwd" required /></br>
+                    <div>
+                        <strong style="color: red;"><%=msg%></strong>
+                    </div>
+                    <button style="float:right;" class="btn btn-primary" type="submit">Login</button>
+                    <div>
+                        <p>Don't have an account? <a href="/register">Register Now</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+           window.history.back();
+        }
+    </script>
+</body>
+
+</html>

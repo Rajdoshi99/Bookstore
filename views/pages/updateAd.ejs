@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- SITE TITTLE -->
+  <%- include('../partials/header'); %>
+
+</head>
+
+<body class="body-wrapper">
+  <%- include('../partials/head'); %>
+  <!--Navbar-->
+   <%- include('../partials/navbar'); %>
+
+   
+    <div class="container">
+      <form action="/update-data" enctype="multipart/form-data" method="POST">
+        <!-- Post Your ad start -->
+        <fieldset class="border border-gary p-4 mb-5">
+          <input type="hidden" id="prevname" name="prevname" value="<%= advertisement.title %>">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3>Update Ad</h3>
+            </div>
+            <div class="col-lg-6">
+              <h6 class="font-weight-bold pt-4 pb-1">Title Of Ad:</h6>
+              <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="title" value="<%=advertisement.title %>" required>
+        
+              <h6 class="font-weight-bold pt-4 pb-1">Description:</h6>
+              <textarea class="border p-3 w-100" rows="7" name="description"><%=advertisement.description %></textarea>
+            </div>
+            <div class="col-lg-6">
+              <h6 class="font-weight-bold pt-4 pb-1">Select Ad Category:</h6>
+              <select class="form-control" name="category" id="category" value="<%=advertisement.category %>" required>
+                <option selected hidden><%=advertisement.category %></option>
+                <option>Electronics</option>
+                <option>Furniture</option>
+                <option>Automobiles</option>
+                <option>Other</option>
+              </select>
+              <div class="price">
+                <h6 class="font-weight-bold pt-4 pb-1">Item Price (₹ IN): </h6>
+                <div class="row px-3">
+                  <div class="col-lg-4 mr-lg-4 rounded bg-white my-2 ">
+                    <input type="number" name="price"  class="border w-100 p-2 bg-white text-capitalize" value="<%=advertisement.price %>" id="price">
+                  </div>
+                </div>
+              </div>
+              <div class="choose-file text-center my-4 py-4 rounded">
+                <h6 class="font-weight-bold pt-4 pb-1">Select Image:</h6>
+                <div class="custom-file mb-3">
+                  <input type="file" class="custom-file-input" id="customFile" name="mypic" required>
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <!-- Post Your ad end -->
+
+        <!-- seller-information start -->
+        <fieldset class="border p-4 my-5 seller-information bg-gray">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3>Seller Information</h3>
+            </div>
+            <div class="col-lg-6">
+              <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
+              <input type="text" name="seller_name"  value="<%=advertisement.seller_name %>" class="border w-100 p-2" required>
+              <h6 class="font-weight-bold pt-4 pb-1">Contact Number:</h6>
+              <input type="text" name="seller_number" value="<%=advertisement.seller_number %>" class="border w-100 p-2" required> 
+            </div>
+            <div class="col-lg-6">
+              <h6 class="font-weight-bold pt-4 pb-1">Contact Email:</h6>
+              <input type="email" name="seller_email" value="<%=advertisement.seller_email %>" class="border w-100 p-2" required>
+              <h6 class="font-weight-bold pt-4 pb-1">City:</h6>
+              <select class="form-control" name="city" id="city" value="<%=advertisement.city %>" required>
+                <option selected hidden><%=advertisement.city %></option>
+                <option>Kalyan</option>
+                <option>Mumbai</option>
+                <option>Vasai</option>
+                <option>Virar</option>
+                <option>Thane</option>
+                <option>Ghatkopar</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+        <!-- seller-information end-->
+
+        <button type="submit" class="btn btn-primary d-block mt-2">Update Your Ad</button>
+      </form>
+    </div>
+  </section>
+  <script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+  </script>
+</body>
+
+</html>

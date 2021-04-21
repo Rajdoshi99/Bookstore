@@ -1,0 +1,40 @@
+<html lang="en">
+
+<head>
+    <title>Register</title>
+    <!-- SITE TITTLE -->
+    <%- include('../partials/header'); %>
+
+</head>
+
+<body style="background:#f2f2f2;">
+    <div class="container">
+        <div class="card" style="width:25%;position: fixed;top: 40%;left: 50%;transform: translate(-50%, -50%);
+                border-radius:5%;box-shadow: 5px 5px 8px #cecece">
+            <div class="card-body">
+                <a class="nav-link" href="#" onclick="goBack()"><i class="fa fa-times" style="font-size:20px"></i></a>
+                <h4 class="card-title text-center">Register</h4>
+                <form action="/add-user" method="POST">
+                    <label for="u_name">Email</label>
+                    <input class="form-control" type="email" name="email" id="email" required /></br>
+                    <label for="passwd">Password</label>
+                    <input class="form-control" type="password" name="passwd" id="passwd" required /></br>
+                    <label for="conf-passw">Confirm Password</label>
+                    <input class="form-control" type="password" name="conf-passw" id="conf-passw" required /></br>
+                    <div>
+                        <strong style="color: red;"><%=msg%></strong>
+                    </div>
+                    <button style="float:right;" class="btn btn-primary" type="submit" id="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+           window.history.back();
+        }
+    </script>
+</body>
+
+</html>

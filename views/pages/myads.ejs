@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- SITE TITTLE -->
+    <%- include('../partials/header'); %>
+</head>
+
+<body class="body-wrapper">
+    <%- include('../partials/head'); %>
+
+        <!--Navbar-->
+        <%- include('../partials/navbar'); %>          
+          <section class="dashboard section">
+                <!-- Container Start -->
+                <div class="container">
+                    <h3>My Ads</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Title</th>
+                                <th class="text-center">Description</th>
+                                <th class="text-center">Category</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center" colspan="2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% advertisements.forEach( (advertisement)=> { %>
+                                <tr>
+                                    <td>
+                                        <img width="80px" height="auto"
+                                            src="<%= advertisement.file.replace('public\\','') %>"
+                                            alt="image description">
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <%=advertisement.title %>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <%=advertisement.description %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <span class="categories">
+                                            <%=advertisement.category %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <%=advertisement.price %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="/update-ad/<%=advertisement.title %>"><i class="fa fa-pencil"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="/delete-ad/<%=advertisement.title %>?_method=DELETE"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Container End -->
+            </section>
+
+</body>
+
+</html>
